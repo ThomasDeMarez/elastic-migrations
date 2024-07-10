@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static self pushSettingsRaw(string $indexName, array $settings)
  * @method static self drop(string $indexName)
  * @method static self dropIfExists(string $indexName)
+ * @method static self reindex(string $oldIndexName, string $newIndexName)
+ * @method static self moveAlias(string $indexName, string $aliasName, array $filter = null)
  * @method static self putAlias(string $indexName, string $aliasName, array $filter = null)
  * @method static self deleteAlias(string $indexName, string $aliasName)
  * @method static self connection(string $connection)

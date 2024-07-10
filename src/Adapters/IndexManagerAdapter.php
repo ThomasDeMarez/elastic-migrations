@@ -146,6 +146,16 @@ class IndexManagerAdapter implements IndexManagerInterface
         return $this;
     }
 
+    public function reindex(string $newIndexName, string $oldIndexName): IndexManagerInterface
+    {
+        $prefixedNewIndexName = prefix_index_name($newIndexName);
+        $prefixedOldIndexName = prefix_index_name($oldIndexName);
+
+        $this->indexManager->reindex($prefixedNewIndexName, $prefixedOldIndexName);
+
+        return $this;
+    }
+
     public function dropIfExists(string $indexName): IndexManagerInterface
     {
         $prefixedIndexName = prefix_index_name($indexName);
@@ -153,6 +163,16 @@ class IndexManagerAdapter implements IndexManagerInterface
         if ($this->indexManager->exists($prefixedIndexName)) {
             $this->drop($indexName);
         }
+
+        return $this;
+    }
+
+    public function moveAlias(string $indexName, string $aliasName): IndexManagerInterface
+    {
+        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedAliasName = prefix_alias_name($aliasName);
+
+        $this->indexManager->moveAliasRaw($prefixedIndexName, $prefixedAliasName);
 
         return $this;
     }
